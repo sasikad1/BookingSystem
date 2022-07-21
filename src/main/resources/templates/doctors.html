@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Doctor Booking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+      Navbar text with an inline element
+    </span>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+        <h1>List Doctors</h1>
+    </div>
+
+    <div class="row">
+        <a th:href="@{/doctors/new}" class="btn btn-primary btn-sm mb-3">Add Doctors</a>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Doctor First Name</th>
+            <th>Doctor Last Name</th>
+            <th>Doctor Phone Number</th>
+            <th>Doctor Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "doctor: ${doctors}">
+            <td th:text = "${doctor.firstName}"></td>
+            <td th:text = "${doctor.lastName}"></td>
+            <td th:text = "${doctor.phoneNumber}"></td>
+            <td th:text = "${doctor.email}"></td>
+            <td>
+                <a th:href="@{doctors/edit/{id}(id=${doctor.id})}" class="btn btn-warning">Edit</a>
+                <a th:href="@{doctors/{id}(id=${doctor.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
